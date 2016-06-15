@@ -1,6 +1,14 @@
+//
+//  CinderAppleMusic.h
+//  CinderAppleMusic
+//
+//
+
+#pragma once
+
 #include "cinder/Cinder.h"
 #include "cinder/Surface.h"
-#include "cinder/app/AppCocoaTouch.h"
+#include "cinder/app/cocoa/AppCocoaTouch.h"
 #include <MediaPlayer/MediaPlayer.h>
 #include <vector>
 #include <string>
