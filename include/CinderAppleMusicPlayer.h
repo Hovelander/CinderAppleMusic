@@ -26,7 +26,7 @@ namespace cinder { namespace AppleMusic {
         Player();
         ~Player();
         
-        //    void play( TrackRef playlist );
+        void play( TrackRef playlist );
         void play( PlaylistRef playlist );
         void play( PlaylistRef playlist, const int index );
         void play();
@@ -48,15 +48,15 @@ namespace cinder { namespace AppleMusic {
         
         template<typename T>
         CallbackId registerTrackChanged( T *obj, bool (T::*callback)(Player*) ){
-            return am_pod->m_cb_track_change.registerCb(std::bind1st(std::mem_fun(callback), obj));
+            return am_pod->am_cb_track_change.registerCb(std::bind1st(std::mem_fun(callback), obj));
         }
         template<typename T>
         CallbackId registerStateChanged( T *obj, bool (T::*callback)(Player*) ){
-            return am_pod->m_cb_state_change.registerCb(std::bind1st(std::mem_fun(callback), obj));
+            return am_pod->am_cb_state_change.registerCb(std::bind1st(std::mem_fun(callback), obj));
         }
         template<typename T>
         CallbackId registerLibraryChanged( T *obj, bool (T::*callback)(Player*) ){
-            return am_pod->m_cb_library_change.registerCb(std::bind1st(std::mem_fun(callback), obj));
+            return am_pod->am_cb_library_change.registerCb(std::bind1st(std::mem_fun(callback), obj));
         }
         
     protected:

@@ -24,7 +24,7 @@
                name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification
              object: am_controller];
     
-    [m_controller beginGeneratingPlaybackNotifications];
+    [am_controller beginGeneratingPlaybackNotifications];
     
     [nc addObserver: self
            selector: @selector (onLibraryChanged:)
@@ -47,17 +47,17 @@
  
 - (void)onStateChanged:(NSNotification *)notification
 {
-    am_cb_state_change.call(m_player);
+    am_cb_state_change.call(am_player);
 }
 
 - (void)onTrackChanged:(NSNotification *)notification
 {
-    am_cb_track_change.call(m_player);
+    am_cb_track_change.call(am_player);
 }
 
 - (void)onLibraryChanged:(NSNotification *)notification
 {
-    am_cb_library_change.call(m_player);
+    am_cb_library_change.call(am_player);
 }
 
 @end

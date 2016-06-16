@@ -62,7 +62,7 @@ namespace cinder { namespace AppleMusic {
         UIImage *artwork_img = [artwork imageWithSize: CGSizeMake(size.x, size.y)];
         
         if(artwork_img)
-           return cocoa::convertUiImage(artwork_img, true);
+           return cocoa::convertUiImage(artwork_img, true);    <----  DanO killing troublemaker for now
       else
             return Surface();
     }
@@ -122,7 +122,7 @@ namespace cinder { namespace AppleMusic {
     MPMediaItemCollection* Playlist::getMediaItemCollection()
     {
         NSMutableArray *items = [NSMutableArray array];
-        for(Iter it = am_tracks.begin(); it != m_tracks.end(); ++it){
+        for(Iter it = am_tracks.begin(); it != am_tracks.end(); ++it){
             [items addObject: (*it)->getMediaItem()];
         }
         return [MPMediaItemCollection collectionWithItems:items];

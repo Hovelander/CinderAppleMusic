@@ -58,7 +58,7 @@ namespace cinder { namespace AppleMusic {
     }
     double Player::getPlayheadTime()
     {
-        return am_pod->m_controller.currentPlaybackTime;
+        return am_pod->am_controller.currentPlaybackTime;
     }
     
     
