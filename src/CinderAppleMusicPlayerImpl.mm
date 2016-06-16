@@ -8,54 +8,56 @@
 {
     self = [super init];
     
-    m_player = player;
-    m_controller = [MPMusicPlayerController systemMusicPlayer];
-    m_library = [MPMediaLibrary defaultMediaLibrary];
+    am_player = player;
+    am_controller = [MPMusicPlayerController systemMusicPlayer];
+    am_library = [MPMediaLibrary defaultMediaLibrary];
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver: self
            selector: @selector (onStateChanged:)
                name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
-             object: m_controller];
+             object: am_controller];
     
     [nc addObserver: self
            selector: @selector (onTrackChanged:)
                name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-             object: m_controller];
+             object: am_controller];
     
     [m_controller beginGeneratingPlaybackNotifications];
     
     [nc addObserver: self
            selector: @selector (onLibraryChanged:)
                name: MPMediaLibraryDidChangeNotification
-             object: m_library];
+             object: am_library];
     
-    [m_library beginGeneratingLibraryChangeNotifications];
+    [am_library beginGeneratingLibraryChangeNotifications];
     
     return self;
 }
 
+/*  DanO  kill this to deal with ARC
 - (void)dealloc
 {
     [super dealloc];
     // TODO: end generating notifications on m_controller? on library?
-    [m_controller dealloc]; // TODO: is this necessary if we aren't the ones allocing iPodMusicPlayer?
+    [am_controller dealloc]; // TODO: is this necessary if we aren't the ones allocing iPodMusicPlayer?
 }
-
+*/
+ 
 - (void)onStateChanged:(NSNotification *)notification
 {
-    m_cb_state_change.call(m_player);
+    am_cb_state_change.call(m_player);
 }
 
 - (void)onTrackChanged:(NSNotification *)notification
 {
-    m_cb_track_change.call(m_player);
+    am_cb_track_change.call(m_player);
 }
 
 - (void)onLibraryChanged:(NSNotification *)notification
 {
-    m_cb_library_change.call(m_player);
+    am_cb_library_change.call(m_player);
 }
 
 @end

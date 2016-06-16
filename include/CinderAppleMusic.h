@@ -41,12 +41,12 @@ namespace cinder { namespace AppleMusic {
         Surface getArtwork(const ivec2 &size);
         
         MPMediaItem* getMediaItem(){
-            return m_media_item;
+            return am_media_item;
         };
         
     protected:
         
-        MPMediaItem *m_media_item;
+        MPMediaItem *am_media_item;
         
     };
     
@@ -64,23 +64,23 @@ namespace cinder { namespace AppleMusic {
         
         void pushTrack(TrackRef track);
         void pushTrack(Track *track);
-        void popLastTrack(){ m_tracks.pop_back(); };
+        void popLastTrack(){ am_tracks.pop_back(); };
         
         string   getAlbumTitle();
         string   getArtistName();
         uint64_t getAlbumId();
         uint64_t getArtistId();
         
-        TrackRef operator[](const int index){ return m_tracks[index]; };
-        TrackRef firstTrack(){ return m_tracks.front(); };
-        TrackRef lastTrack(){ return m_tracks.back(); };
-        Iter     begin(){ return m_tracks.begin(); };
-        Iter     end(){ return m_tracks.end(); };
-        size_t   size(){ return m_tracks.size(); };
+        TrackRef operator[](const int index){ return am_tracks[index]; };
+        TrackRef firstTrack(){ return am_tracks.front(); };
+        TrackRef lastTrack(){ return am_tracks.back(); };
+        Iter     begin(){ return am_tracks.begin(); };
+        Iter     end(){ return am_tracks.end(); };
+        size_t   size(){ return am_tracks.size(); };
         
         MPMediaItemCollection* getMediaItemCollection();
         
-        vector<TrackRef> m_tracks;
+        vector<TrackRef> am_tracks;
         
     };
     

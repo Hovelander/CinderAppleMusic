@@ -10,7 +10,7 @@ namespace cinder { namespace AppleMusic {
     }
     Track::Track(MPMediaItem *media_item)
     {
-        m_media_item = [media_item retain];
+//  DanO kill this to deal with ARC      m_media_item = [media_item retain];
     }
     Track::~Track()
     {
@@ -18,56 +18,56 @@ namespace cinder { namespace AppleMusic {
     
     string Track::getTitle()
     {
-        return string([[m_media_item valueForProperty: MPMediaItemPropertyTitle] UTF8String]);
+        return string([[am_media_item valueForProperty: MPMediaItemPropertyTitle] UTF8String]);
     }
     string Track::getAlbumTitle()
     {
-        return string([[m_media_item valueForProperty: MPMediaItemPropertyAlbumTitle] UTF8String]);
+        return string([[am_media_item valueForProperty: MPMediaItemPropertyAlbumTitle] UTF8String]);
     }
     string Track::getArtist()
     {
-        return string([[m_media_item valueForProperty: MPMediaItemPropertyArtist] UTF8String]);
+        return string([[am_media_item valueForProperty: MPMediaItemPropertyArtist] UTF8String]);
     }
     
     uint64_t Track::getAlbumId()
     {
-        return [[m_media_item valueForProperty: MPMediaItemPropertyAlbumPersistentID] longLongValue];
+        return [[am_media_item valueForProperty: MPMediaItemPropertyAlbumPersistentID] longLongValue];
     }
     uint64_t Track::getArtistId()
     {
-        return [[m_media_item valueForProperty: MPMediaItemPropertyArtistPersistentID] longLongValue];
+        return [[am_media_item valueForProperty: MPMediaItemPropertyArtistPersistentID] longLongValue];
     }
     uint64_t Track::getItemId()
     {
-        return [[m_media_item valueForProperty: MPMediaItemPropertyPersistentID] longLongValue];
+        return [[am_media_item valueForProperty: MPMediaItemPropertyPersistentID] longLongValue];
     }
     
     int Track::getPlayCount()
     {
-        return [[m_media_item valueForProperty: MPMediaItemPropertyPlayCount] intValue];
+        return [[am_media_item valueForProperty: MPMediaItemPropertyPlayCount] intValue];
     }
     int Track::getStarRating()
     {
-        return [[m_media_item valueForProperty: MPMediaItemPropertyRating] intValue];
+        return [[am_media_item valueForProperty: MPMediaItemPropertyRating] intValue];
     }
     
     double Track::getLength()
     {
-        return [[m_media_item valueForProperty: MPMediaItemPropertyPlaybackDuration] doubleValue];
+        return [[am_media_item valueForProperty: MPMediaItemPropertyPlaybackDuration] doubleValue];
     }
-    
+
     Surface Track::getArtwork(const ivec2 &size)
     {
-        MPMediaItemArtwork *artwork = [m_media_item valueForProperty: MPMediaItemPropertyArtwork];
+        MPMediaItemArtwork *artwork = [am_media_item valueForProperty: MPMediaItemPropertyArtwork];
         UIImage *artwork_img = [artwork imageWithSize: CGSizeMake(size.x, size.y)];
         
         if(artwork_img)
-// DanO           return cocoa::convertUiImage(artwork_img, true);
-// DanO      else
+           return cocoa::convertUiImage(artwork_img, true);
+      else
             return Surface();
     }
-    
-    
+
+
     
     // PLAYLIST
     
@@ -87,11 +87,11 @@ namespace cinder { namespace AppleMusic {
     
     void Playlist::pushTrack(TrackRef track)
     {
-        m_tracks.push_back(track);
+        am_tracks.push_back(track);
     }
     void Playlist::pushTrack(Track *track)
     {
-        m_tracks.push_back(TrackRef(track));
+        am_tracks.push_back(TrackRef(track));
     }
     
     string Playlist::getAlbumTitle()
@@ -122,7 +122,7 @@ namespace cinder { namespace AppleMusic {
     MPMediaItemCollection* Playlist::getMediaItemCollection()
     {
         NSMutableArray *items = [NSMutableArray array];
-        for(Iter it = m_tracks.begin(); it != m_tracks.end(); ++it){
+        for(Iter it = am_tracks.begin(); it != m_tracks.end(); ++it){
             [items addObject: (*it)->getMediaItem()];
         }
         return [MPMediaItemCollection collectionWithItems:items];

@@ -17,15 +17,15 @@ namespace cinder { namespace AppleMusic {
 
 @interface CinderAppleMusicPlayerImpl : NSObject {
 @public
-    MPMusicPlayerController *m_controller;
-    MPMediaLibrary          *m_library;
-    MPMediaItem             *m_playing_item;
+    MPMusicPlayerController *am_controller;
+    MPMediaLibrary          *am_library;
+    MPMediaItem             *am_playing_item;
     
-    cinder::AppleMusic::Player    *m_player;
+    cinder::AppleMusic::Player    *am_player;
     
-    cinder::CallbackMgr<bool(cinder::AppleMusic::Player*)> m_cb_state_change;
-    cinder::CallbackMgr<bool(cinder::AppleMusic::Player*)> m_cb_track_change;
-    cinder::CallbackMgr<bool(cinder::AppleMusic::Player*)> m_cb_library_change;
+    cinder::CallbackMgr<bool(cinder::AppleMusic::Player*)> am_cb_state_change;
+    cinder::CallbackMgr<bool(cinder::AppleMusic::Player*)> am_cb_track_change;
+    cinder::CallbackMgr<bool(cinder::AppleMusic::Player*)> am_cb_library_change;
 }
 
 -(id)init:(cinder::AppleMusic::Player*)player;
