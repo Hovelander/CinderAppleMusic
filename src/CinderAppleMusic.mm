@@ -61,11 +61,14 @@ namespace cinder { namespace AppleMusic {
         MPMediaItemArtwork *artwork = [am_media_item valueForProperty: MPMediaItemPropertyArtwork];
         UIImage *artwork_img = [artwork imageWithSize: CGSizeMake(size.x, size.y)];
         
-        if(artwork_img)
-           return cocoa::convertUiImage(artwork_img, true);    <----  DanO killing troublemaker for now
-      else
-            return Surface();
-    }
+        if (artwork_img == nil) {
+            artwork_img = [artwork imageWithSize:artwork.bounds.size];
+            
+            //        if(artwork_img)
+            //           return cocoa::convertUiImage(artwork_img, true);   // <----  DanO killing troublemaker for now  http://stackoverflow.com/questions/25998621/mpmediaitemartwork-is-null-while-cover-is-available-in-itunes
+            //      else
+            //            return Surface();
+        }
 
 
     
