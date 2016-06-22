@@ -69,7 +69,7 @@ namespace cinder { namespace AppleMusic {
             //      else
             //            return Surface();
         }
-
+    }
 
     
     // PLAYLIST
