@@ -10,7 +10,7 @@ namespace cinder { namespace AppleMusic {
     }
     Track::Track(MPMediaItem *media_item)
     {
-//  DanO kill this to deal with ARC      m_media_item = [media_item retain];
+//  DanO kill this to deal with ARC      am_media_item = [media_item retain];
     }
     Track::~Track()
     {

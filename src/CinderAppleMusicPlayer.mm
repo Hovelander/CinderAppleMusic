@@ -10,7 +10,7 @@ namespace cinder { namespace AppleMusic {
 
     Player::~Player()
     {
-//  DanO kill this to deal with ARC       [m_pod dealloc];
+//  DanO kill this to deal with ARC       [am_pod dealloc];
     }
     
     //void Player::play( TrackRef track )
