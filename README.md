@@ -14,3 +14,4 @@ Figure out ARC issues
 Continue to come current with iOS 9 & 10
 
 Continue working on example app and bring into the light
+(Think about ++ new iOS 10 music app here)
